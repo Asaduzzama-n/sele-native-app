@@ -1,51 +1,94 @@
-# Welcome to your Expo app 👋
+# Sele Native App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern React Native mobile application built with Expo and TypeScript, featuring a clean architecture and robust navigation.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Cross-platform support (iOS, Android, Web)
+- Modern UI with Expo Router
+- TypeScript for type safety
+- Responsive design
+- Custom components and hooks
+- Environment configuration
+- Testing setup with Jest
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
 
-2. Start the app
+- **Framework**: Expo (React Native)
+- **Language**: TypeScript
+- **Navigation**: Expo Router
+- **UI Components**: React Native, Expo Vector Icons
+- **Development Tools**: Jest, ESLint
 
-   ```bash
-    npx expo start
-   ```
+## Prerequisites
 
-In the output, you'll find options to open the app in a
+- Node.js (v18 or higher)
+- npm or yarn
+- Expo CLI (recommended)
+- Android Studio (for Android development)
+- Xcode (for iOS development, macOS only)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Getting Started
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. Clone the repository:
 
 ```bash
-npm run reset-project
+git clone <repository-url>
+cd sele-native-app
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies:
 
-## Learn more
+```bash
+npm install
+# or
+yarn install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Start the development server:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm start
+# or
+yarn start
+```
 
-## Join the community
+## Running the App
 
-Join our community of developers creating universal apps.
+- **Android**: `npm run android`
+- **iOS**: `npm run ios`
+- **Web**: `npm run web`
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# sele-native-app
+## Project Structure
+
+```
+sele-native-app/
+├── app/              # Main application routes and screens
+├── components/       # Reusable UI components
+├── constants/        # Application constants
+├── hooks/           # Custom React hooks
+├── assets/          # Static assets (images, fonts)
+└── scripts/         # Utility scripts
+```
+
+## Available Scripts
+
+- `npm start` - Start the development server
+- `npm run android` - Run on Android device/emulator
+- `npm run ios` - Run on iOS device/simulator
+- `npm run web` - Run in web browser
+- `npm run test` - Run tests
+- `npm run lint` - Run ESLint
+- `npm run reset-project` - Reset project configuration
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
