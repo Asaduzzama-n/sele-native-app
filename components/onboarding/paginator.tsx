@@ -1,32 +1,68 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { Animated } from 'react-native'
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
 import { SCREEN_WIDTH } from '@/constants/screen'
 
-const OnboardingPaginator = ({data, currentIndex}: {data: any, currentIndex: number}) => {
+const OnboardingPaginator = ({data, currentIndex,scrollX, handleNext, handleGetStarted}: {data: any, currentIndex: number, scrollX: Animated.Value, handleNext: () => void, handleGetStarted: () => void}) => {
+  const nextAnim = useRef(new Animated.Value(1)).current;
+  const getStartedAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    const animateButton = (buttonAnim: Animated.Value, toValue: number) => {
+      Animated.timing(buttonAnim, {
+        toValue,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    };
+
+    if (currentIndex === data.length - 1) {
+      animateButton(nextAnim, 0);
+      animateButton(getStartedAnim, 1);
+    } else {
+      animateButton(nextAnim, 1);
+      animateButton(getStartedAnim, 0);
+    }
+  }, [currentIndex]);
   return (
     <View style={styles.paginatorContainer}>
      {
-        data.map((_: any, index: number) => (
-          <View style={styles.dot} key={index}>
-          </View>
-        ))
+        data.map((_: any, index: number) => {
+          const inputRange = [(index - 1) * SCREEN_WIDTH, index * SCREEN_WIDTH, (index + 1) * SCREEN_WIDTH];
+        const dotWidth = scrollX.interpolate({
+          inputRange,
+          outputRange: [20, 40, 20],
+          extrapolate: 'clamp',
+        });
+
+        const opacity = scrollX.interpolate({
+          inputRange,
+          outputRange: [0.4, 1, 0.4],
+          extrapolate: 'clamp',
+        });
+
+          
+          return <Animated.View  style={[styles.dot, {width: dotWidth, opacity: opacity}]} key={index}>
+          </Animated.View>
+        })
      }
        {/* Next Button */}
        {currentIndex !== data.length - 1 && (
-        <View style={styles.nextButton}>
-          <TouchableOpacity >
+        // <View >
+          <TouchableOpacity onPress={handleNext} style={[styles.nextButton]}>
+           <Animated.View style={[ { transform: [{ scale: nextAnim }], opacity: nextAnim }]}>
             <Text style={{color: '#007BFF', fontWeight: 'bold' , fontSize: 16}}>Next</Text>
+           </Animated.View>
           </TouchableOpacity>
-        </View>
+        // </View>
       )}
 
       {/* Get Started Button */}
       {currentIndex === data.length - 1 && (
-        <View style={styles.getStartedButton}>
-          <TouchableOpacity >
-            <Text style={{color: 'white', fontWeight: 'bold' , fontSize: 16}}>Get Started</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={handleGetStarted} style={[styles.getStartedButton, { transform: [{ scale: getStartedAnim }], opacity: getStartedAnim }]}>
+          <Text style={{color: 'white', fontWeight: 'bold' , fontSize: 16 }}>Get Started</Text>
+        </TouchableOpacity>
       )}
     </View>
   )
@@ -43,7 +79,7 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderRadius: 5,
-        backgroundColor: '#E6F2FF'
+        backgroundColor: '#007BFF'
     },
     nextButton: {
         position: 'absolute',
@@ -53,7 +89,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 10,
         borderRadius: 10
-
+        
     },
     getStartedButton: {
         position: 'absolute',
