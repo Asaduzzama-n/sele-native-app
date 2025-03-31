@@ -3,21 +3,18 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/constants/screen'
 import { Colors } from '@/constants/Colors'
-import { RadioGroup } from '@/components/ui/customRadioButton'
 import InputField from '@/components/ui/customInputField'
 import CustomButton from '@/components/ui/customButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 
 const SignIn = () => {
   const [form, setForm] = React.useState({
     email: '',
     password: '',
-    userRole: 'user'
   })
-  const [userRole, setUserRole] = React.useState('user')
 
-  const handleLogin = (email:string, password:string)=>{
-  console.log("❤❤", email, password)
+  const handleLogin = ()=>{
+    router.replace('/(root)/(tabs)/home')
   }
 
   return (
@@ -33,16 +30,16 @@ const SignIn = () => {
         {/* <View>
           <RadioGroup options={['User', 'Agency']} selectedOption={userRole} setUserRole={setUserRole} style={{flexDirection: 'row' , justifyContent: 'space-between', alignItems: 'center' , gap: 10,width:SCREEN_WIDTH * 0.5}}/>
         </View> */}
-        <View>
+        <View style={{ rowGap:10}}>
           <InputField placeholder='Email' value={form.email} label='Email'  icon='mail' type='email' secureTextEntry={false} onChangeText={(value:string)=> setForm({...form, email:value})} />
           <InputField placeholder='Password' value={form.password} label='Password'  icon='lock' type='password' secureTextEntry={true} onChangeText={(value:string)=> setForm({...form, password:value})} />
-          <Link style={{position:'absolute', bottom:-20, right:0, textDecorationLine: 'underline', color:Colors.light.primary, fontWeight:500, fontSize:16}} href={'/(auth)/sign-in'}>Forgot Password?</Link>
+          <Link style={{position:'absolute', bottom:-20, right:0, textDecorationLine: 'underline', color:Colors.light.primary, fontWeight:500, fontSize:16}} href={'/(auth)/forget-password'}>Forgot Password?</Link>
         </View>
         <View>
         </View>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton bgVariant='primary' onPress={()=>handleLogin(form.email,form.password)}  title='Sign In' ></CustomButton>
+        <CustomButton bgVariant='primary' onPress={()=>handleLogin()} isDisabled={false}  title='Sign In' ></CustomButton>
         <Text style={{fontSize:16, color:Colors.light.subText}}>Don't have an account? <Link style={{fontSize:16, color:Colors.light.primary, fontWeight:500, textDecorationLine:'underline'}} href={'/(auth)/sign-up'}>Sign up </Link></Text>
       </View>
     </ScrollView>
@@ -69,19 +66,20 @@ const styles = StyleSheet.create({
     
   },
   inputContainer: {
-    paddingVertical:40,
+    paddingVertical:50,
     flex:1,
     alignItems: 'center',
     height: SCREEN_HEIGHT*0.30,
-    rowGap:20,
-
+    width: SCREEN_WIDTH * 0.8,
+    alignSelf:'center',
   },
   buttonContainer: {
     flex:1,
     rowGap:20,
+    justifyContent:'center',
     alignItems: 'center',
     height: SCREEN_HEIGHT*0.30,
-
+    // backgroundColor: Colors.light.secondary
   }
 })
 

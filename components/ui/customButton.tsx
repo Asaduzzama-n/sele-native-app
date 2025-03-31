@@ -10,6 +10,7 @@ type CustomButtonProps = {
     textVariant?: 'primary' | 'secondary' | 'outline' | 'success' | 'danger';
     IconLeft?: React.ComponentType<any>;
     IconRight?: React.ComponentType<any>;
+    isDisabled?: boolean;
 };
 
 const getBgVariantStyle = (variant: string) => {
@@ -46,9 +47,9 @@ const getTextVariantStyle = (variant: string) => {
     }
 };
 
-const CustomButton = ({  title, onPress, bgVariant='primary', textVariant='primary', IconLeft, IconRight,...props }: CustomButtonProps) => {
+const CustomButton = ({  title, onPress, bgVariant='primary', textVariant='primary', IconLeft, IconRight, isDisabled,...props }: CustomButtonProps) => {
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.button, getBgVariantStyle(bgVariant), ]}>
+        <TouchableOpacity onPress={onPress} disabled={isDisabled} style={[styles.button,  getBgVariantStyle(bgVariant), ]}>
             {IconLeft && <IconLeft style={styles.icon} />}
             <Text style={[styles.text, getTextVariantStyle(textVariant || bgVariant)]}>{title}</Text>
             {IconRight && <IconRight style={styles.icon} />}

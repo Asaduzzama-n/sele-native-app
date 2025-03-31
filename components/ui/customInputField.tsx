@@ -12,18 +12,19 @@ type InputFieldProps = {
     value: string;
     label: string;
     icon: string;
+isLabel?: boolean;
     style?: any;
     
 };
 
-const InputField = ({ placeholder, value, label, type, icon, onChangeText, secureTextEntry ,...props}: InputFieldProps) => {
+const InputField = ({ placeholder, value, label, type, icon, onChangeText, secureTextEntry ,isLabel,...props}: InputFieldProps) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(secureTextEntry);
 
     return (
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? "padding" : 'height'}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={[styles.container]}>
-                    <Text style={{ fontSize: 14, fontWeight: '500', color: Colors.light.text }}>{label}</Text>
+                    {isLabel && <Text style={{ fontSize: 14, fontWeight: '500', color: Colors.light.text }}>{label}</Text>}
                     <View style={styles.inputField}>
 
                         <Feather name={icon} size={16} />
@@ -37,7 +38,7 @@ const InputField = ({ placeholder, value, label, type, icon, onChangeText, secur
                         />
                         {secureTextEntry && (
                             <TouchableOpacity onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
-                                <Feather name={isPasswordVisible ? 'eye-off' : 'eye'} size={16} color={Colors.light.primary} />
+                                <Feather name={isPasswordVisible ? 'eye-off' : 'eye'} size={18} color={Colors.light.primary} />
                             </TouchableOpacity>
                         )}
                     </View>
