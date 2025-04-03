@@ -8,7 +8,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-na
 
 export const ICONS: { [key: string]: string } = {
   Home: 'home',
-  Reserve: 'bookmark',
+  Reserve: 'clipboard',
   Profile: 'user',
   Chat: 'message-circle',
 };
@@ -94,7 +94,7 @@ const TabBar =({ state, descriptors, navigation }:{state:any, descriptors:any, n
       alignItems: 'center',
       borderTopEndRadius: 20,
       borderTopStartRadius: 20,
-      backgroundColor: '#66B0FF',
+      backgroundColor: '#ededed',
 
     },
   })
