@@ -58,10 +58,17 @@ export const brandData = [
     name:'All',
     image:require('../assets/images/honda.png'),
   }
+]              
+
+
+export const carDetailsIcons = [
+  {icon:'fuel', text:'gasoline'},
+  {icon:'format-color-fill', text:'color'},
+  {icon:'car-multiple', text:'type'},
+  {icon:'speedometer', text:'mileage'},
+  {icon:'seat', text:'seatCount'},
+  {icon:'car-info', text:'gearSystem'}
 ]
-
-
-
 
 
 export const carData = [
@@ -78,7 +85,7 @@ export const carData = [
     seatCount: 5,
     gearSystem: 'Automatic',
     brand: 'BMW',
-    protectionPlan: 'Full Coverage',
+    protectionPlan: ['Full Coverage', 'Basic Coverage', 'Premium Coverage'],
     agency: {
       name: 'Luxury Rentals',
       location: 'Los Angeles, CA',
@@ -86,6 +93,8 @@ export const carData = [
     },
     reviews: [
       {
+        id: 1,
+        name: 'John Doe',
         reviewerImage: require('../assets/images/user.png'),
         rating: 4.8,
         review: 'Amazing car, smooth drive, and great comfort!',
@@ -106,7 +115,7 @@ export const carData = [
     seatCount: 5,
     gearSystem: 'Automatic',
     brand: 'Audi',
-    protectionPlan: 'Basic Coverage',
+    protectionPlan: ['Basic Coverage', 'Premium Coverage', 'Full Coverage'],
     agency: {
       name: 'Elite Cars',
       location: 'New York, NY',
@@ -114,9 +123,19 @@ export const carData = [
     },
     reviews: [
       {
+        id: 1,
+        name: 'John Das',
         reviewerImage: require('../assets/images/user.png'),
         rating: 4.5,
         review: 'Comfortable ride and fuel-efficient.',
+        date: '2025-03-15',
+      },
+      {
+        id: 2,
+        name: 'Asaduzzaman',
+        reviewerImage: require('../assets/images/user.png'),
+        rating: 4.5,
+        review: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         date: '2025-03-15',
       },
     ],
@@ -134,7 +153,7 @@ export const carData = [
     seatCount: 5,
     gearSystem: 'Automatic',
     brand: 'Tesla',
-    protectionPlan: 'Premium Coverage',
+    protectionPlan: ['Premium Coverage', 'Basic Coverage', 'Full Coverage'],
     agency: {
       name: 'Green Drive',
       location: 'San Francisco, CA',
@@ -142,6 +161,8 @@ export const carData = [
     },
     reviews: [
       {
+        id: 1,
+        name: 'Doe John',
         reviewerImage: require('../assets/images/user.png'),
         rating: 4.9,
         review: 'Best electric car experience!',

@@ -6,6 +6,7 @@ import Home from './home';
 import Reserve from './reserve';
 import Profile from './profile';
 import Chat from './chat';
+import { StatusBar } from 'expo-status-bar';
 
 const Tab = createBottomTabNavigator();
 
